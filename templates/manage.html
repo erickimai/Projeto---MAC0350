@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Manage — Task Manager{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Manage</h1>
+    <p class="subtitle">Create categories and add new tasks.</p>
+</div>
+
+<div class="manage-grid">
+
+    <!-- Left: Categories -->
+    <section class="card">
+        <h2>📁 Categories</h2>
+        <p class="section-desc">Categories group your tasks by subject or project.</p>
+
+        <!-- Create Category Form (hx-post) -->
+        <form
+            hx-post="/categories"
+            hx-target="#category-list"
+            hx-swap="beforeend"
+            hx-on::after-request="this.reset()"
+            class="form-row"
+        >
+            <input type="text" name="name" placeholder="Category name…" class="input" required>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <ul id="category-list" class="item-list">
+            {% for category in categories %}
+                {% include "partials/category_item.html" %}
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Right: New Task -->
+    <section class="card">
+        <h2>✅ New Task</h2>
+        <p class="section-desc">Add a task and assign it to a category.</p>
+
+        <form
+            hx-post="/tasks"
+            hx-target="#new-task-feedback"
+            hx-swap="innerHTML"
+            hx-on::after-request="this.reset()"
+            class="form-stack"
+        >
+            <label for="title">Task title</label>
+            <input type="text" id="title" name="title" placeholder="What needs to be done?" class="input" required>
+
+            <label for="category_id">Category</label>
+            <select id="category_id" name="category_id" class="input select" required>
+                <option value="">Select a category…</option>
+                {% for cat in categories %}
+                <option value="{{ cat.id }}">{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="btn btn-primary btn-full">➕ Create Task</button>
+        </form>
+
+        <div id="new-task-feedback" class="feedback-area"></div>
+
+        <p class="hint">
+            Tasks will appear on the <a href="/">Home page</a>.
+            Remember to <strong>create a category first</strong> before adding tasks.
+        </p>
+    </section>
+
+</div>
+{% endblock %}

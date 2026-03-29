@@ -1,0 +1,29 @@
+<div id="task-{{ task.id }}" class="task-item task-editing">
+    <form
+        hx-put="/tasks/{{ task.id }}"
+        hx-target="#task-{{ task.id }}"
+        hx-swap="outerHTML"
+        class="edit-form"
+    >
+        <input
+            type="text"
+            name="title"
+            value="{{ task.title }}"
+            class="input input-sm"
+            required
+            autofocus
+        >
+        <div class="edit-actions">
+            <button type="submit" class="btn btn-sm btn-primary">💾 Save</button>
+            <!-- Cancel: hx-get reloads the read-only view -->
+            <button
+                type="button"
+                class="btn btn-sm btn-secondary"
+                hx-get="/tasks/{{ task.id }}/view"
+                hx-target="#task-{{ task.id }}"
+                hx-swap="outerHTML"
+            >Cancel</button>
+        </div>
+    </form>
+    <span class="task-badge">{{ task.category.name }}</span>
+</div>

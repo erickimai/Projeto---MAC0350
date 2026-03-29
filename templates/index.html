@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Home — Task Manager{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>My Tasks</h1>
+    <p class="subtitle">Search, filter, and manage your tasks below.</p>
+</div>
+
+<!-- Search & Filter Bar -->
+<div class="search-bar card">
+    <div class="search-row">
+        <input
+            type="text"
+            name="search"
+            placeholder="🔍 Search tasks by name…"
+            class="input"
+            hx-get="/tasks"
+            hx-trigger="input changed delay:300ms, search"
+            hx-target="#task-list"
+            hx-include="[name='category_id']"
+        >
+        <select
+            name="category_id"
+            class="input select"
+            hx-get="/tasks"
+            hx-trigger="change"
+            hx-target="#task-list"
+            hx-include="[name='search']"
+        >
+            <option value="">All Categories</option>
+            {% for cat in categories %}
+            <option value="{{ cat.id }}">{{ cat.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<!-- Task List -->
+<div id="task-list">
+    {% include "partials/task_list.html" %}
+</div>
+
+{% if not tasks %}
+<div class="empty-state">
+    <p>No tasks yet. <a href="/manage">Create your first task →</a></p>
+</div>
+{% endif %}
+{% endblock %}

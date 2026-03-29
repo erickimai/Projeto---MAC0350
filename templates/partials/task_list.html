@@ -1,0 +1,9 @@
+{% for task in tasks %}
+    {% include "partials/task_item.html" %}
+{% endfor %}
+
+{% if not tasks %}
+<div class="empty-state">
+    <p>No tasks found. <a href="/manage">Add one →</a></p>
+</div>
+{% endif %}

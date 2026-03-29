@@ -1,0 +1,33 @@
+<div id="task-{{ task.id }}" class="task-item {% if task.done %}task-done{% endif %}">
+    <div class="task-left">
+        <!-- Toggle done (hx-patch) -->
+        <button
+            class="checkbox {% if task.done %}checked{% endif %}"
+            hx-patch="/tasks/{{ task.id }}/toggle"
+            hx-target="#task-{{ task.id }}"
+            hx-swap="outerHTML"
+            title="Mark as {% if task.done %}undone{% else %}done{% endif %}"
+        >{% if task.done %}✓{% endif %}</button>
+        <div class="task-info">
+            <span class="task-title">{{ task.title }}</span>
+            <span class="task-badge">{{ task.category.name }}</span>
+        </div>
+    </div>
+    <div class="task-actions">
+        <!-- Edit (hx-get → swaps this item with edit form) -->
+        <button
+            class="btn btn-sm btn-secondary"
+            hx-get="/tasks/{{ task.id }}/edit"
+            hx-target="#task-{{ task.id }}"
+            hx-swap="outerHTML"
+        >✏️ Edit</button>
+        <!-- Delete (hx-delete → removes this item) -->
+        <button
+            class="btn btn-sm btn-danger"
+            hx-delete="/tasks/{{ task.id }}"
+            hx-target="#task-{{ task.id }}"
+            hx-swap="outerHTML"
+            hx-confirm="Delete this task?"
+        >🗑️</button>
+    </div>
+</div>
