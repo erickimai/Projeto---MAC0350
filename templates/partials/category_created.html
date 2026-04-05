@@ -1,0 +1,17 @@
+<li id="category-{{ category.id }}" class="category-item">
+    <span class="category-name">📁 {{ category.name }}</span>
+    <button
+        class="btn btn-sm btn-danger"
+        hx-delete="/categories/{{ category.id }}"
+        hx-target="#category-{{ category.id }}"
+        hx-swap="outerHTML"
+        hx-confirm="Delete '{{ category.name }}' and all its tasks?"
+    >🗑️</button>
+</li>
+
+<select id="category_id" name="category_id" class="input select" required hx-swap-oob="true">
+    <option value="">Select a category…</option>
+    {% for cat in categories %}
+    <option value="{{ cat.id }}">{{ cat.name }}</option>
+    {% endfor %}
+</select>

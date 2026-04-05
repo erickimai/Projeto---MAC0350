@@ -1,0 +1,6 @@
+<select id="category_id" name="category_id" class="input select" required hx-swap-oob="true">
+    <option value="">Select a category…</option>
+    {% for cat in categories %}
+    <option value="{{ cat.id }}">{{ cat.name }}</option>
+    {% endfor %}
+</select>

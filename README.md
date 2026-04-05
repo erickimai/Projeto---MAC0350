@@ -94,6 +94,10 @@ O aplicativo usa SQLite com dois modelos:
 - **Category**: agrupa tarefas por assunto/projeto
 - **Task**: pertence a uma categoria (relacionamento Um-para-Muitos)
 
+## Observações
+
+O CSS do projeto foi escrito com auxílio de inteligência artificial.
+
 ## Licença
 
 MIT

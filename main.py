@@ -152,17 +152,21 @@ def create_category(
     db.add(category)
     db.commit()
     db.refresh(category)
+    categories = db.query(models.Category).all()
     return templates.TemplateResponse(
-        "partials/category_item.html", {"request": request, "category": category}
+        "partials/category_created.html", {"request": request, "category": category, "categories": categories}
     )
 
 
 @app.delete("/categories/{category_id}", response_class=HTMLResponse)
-def delete_category(category_id: int, db: Session = Depends(get_db)):
+def delete_category(category_id: int, request: Request, db: Session = Depends(get_db)):
     """hx-delete: Delete a category (also deletes its tasks via cascade)."""
     category = db.query(models.Category).filter(models.Category.id == category_id).first()
     if not category:
         raise HTTPException(status_code=404)
     db.delete(category)
     db.commit()
-    return HTMLResponse("")
+    categories = db.query(models.Category).all()
+    return templates.TemplateResponse(
+        "partials/category_deleted.html", {"request": request, "categories": categories}
+    )
