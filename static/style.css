@@ -1,4 +1,3 @@
-/* ─── Reset & Variables ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -22,7 +21,6 @@
     --radius-sm: 6px;
 }
 
-/* ─── Base ──────────────────────────────────────────────────────────────── */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
@@ -36,7 +34,6 @@ body {
 a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* ─── Navbar ────────────────────────────────────────────────────────────── */
 .navbar {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -78,7 +75,6 @@ a:hover { text-decoration: underline; }
 .nav-link:hover { background: var(--bg); color: var(--text); text-decoration: none; }
 .nav-link.active { background: var(--primary); color: #fff; }
 
-/* ─── Container & Footer ────────────────────────────────────────────────── */
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -95,12 +91,10 @@ a:hover { text-decoration: underline; }
     background: var(--surface);
 }
 
-/* ─── Page Header ───────────────────────────────────────────────────────── */
 .page-header { margin-bottom: 1.5rem; }
 .page-header h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: -.4px; }
 .subtitle { color: var(--text-muted); margin-top: .25rem; font-size: .95rem; }
 
-/* ─── Card ──────────────────────────────────────────────────────────────── */
 .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -112,7 +106,6 @@ a:hover { text-decoration: underline; }
 .card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: .35rem; }
 .section-desc { color: var(--text-muted); font-size: .875rem; margin-bottom: 1.1rem; }
 
-/* ─── Buttons ───────────────────────────────────────────────────────────── */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -140,7 +133,6 @@ a:hover { text-decoration: underline; }
 .btn-sm { padding: .3rem .65rem; font-size: .8rem; }
 .btn-full { width: 100%; justify-content: center; margin-top: .75rem; }
 
-/* ─── Inputs ────────────────────────────────────────────────────────────── */
 .input {
     width: 100%;
     padding: .6rem .85rem;
@@ -159,7 +151,6 @@ a:hover { text-decoration: underline; }
 .input-sm { padding: .4rem .7rem; font-size: .88rem; }
 .select { appearance: none; cursor: pointer; }
 
-/* ─── Form layouts ──────────────────────────────────────────────────────── */
 .form-row {
     display: flex;
     gap: .6rem;
@@ -180,7 +171,6 @@ a:hover { text-decoration: underline; }
     letter-spacing: .04em;
 }
 
-/* ─── Search Bar ────────────────────────────────────────────────────────── */
 .search-bar { margin-bottom: 1.25rem; }
 
 .search-row {
@@ -189,7 +179,6 @@ a:hover { text-decoration: underline; }
 }
 .search-row .select { max-width: 180px; flex-shrink: 0; }
 
-/* ─── Task Items ────────────────────────────────────────────────────────── */
 .task-item {
     display: flex;
     align-items: center;
@@ -257,7 +246,6 @@ a:hover { text-decoration: underline; }
     flex-shrink: 0;
 }
 
-/* ─── Checkbox ──────────────────────────────────────────────────────────── */
 .checkbox {
     width: 24px;
     height: 24px;
@@ -280,7 +268,6 @@ a:hover { text-decoration: underline; }
     border-color: var(--success);
 }
 
-/* ─── Inline Edit Form ───────────────────────────────────────────────────── */
 .edit-form {
     display: flex;
     align-items: center;
@@ -290,7 +277,6 @@ a:hover { text-decoration: underline; }
 }
 .edit-actions { display: flex; gap: .4rem; flex-shrink: 0; }
 
-/* ─── Category List ──────────────────────────────────────────────────────── */
 .item-list {
     list-style: none;
     display: flex;
@@ -311,7 +297,6 @@ a:hover { text-decoration: underline; }
 
 .category-name { font-weight: 500; font-size: .9rem; }
 
-/* ─── Manage Grid ────────────────────────────────────────────────────────── */
 .manage-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -319,7 +304,6 @@ a:hover { text-decoration: underline; }
     align-items: start;
 }
 
-/* ─── Misc ───────────────────────────────────────────────────────────────── */
 .empty-state {
     text-align: center;
     padding: 2.5rem 1rem;
@@ -343,7 +327,6 @@ a:hover { text-decoration: underline; }
     line-height: 1.5;
 }
 
-/* ─── Responsive Mobile ──────────────────────────────────────────────────── */
 @media (max-width: 640px) {
     .container { padding: 1.25rem .9rem; }
 

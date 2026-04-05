@@ -9,7 +9,6 @@ class Category(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False, unique=True)
 
-    # One Category -> Many Tasks
     tasks = relationship("Task", back_populates="category", cascade="all, delete-orphan")
 
 
@@ -21,5 +20,4 @@ class Task(Base):
     done = Column(Boolean, default=False)
     category_id = Column(Integer, ForeignKey("categories.id"), nullable=False)
 
-    # Many Tasks -> One Category
     category = relationship("Category", back_populates="tasks")

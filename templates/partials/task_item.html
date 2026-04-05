@@ -1,6 +1,5 @@
 <div id="task-{{ task.id }}" class="task-item {% if task.done %}task-done{% endif %}">
     <div class="task-left">
-        <!-- Toggle done (hx-patch) -->
         <button
             class="checkbox {% if task.done %}checked{% endif %}"
             hx-patch="/tasks/{{ task.id }}/toggle"
@@ -14,14 +13,12 @@
         </div>
     </div>
     <div class="task-actions">
-        <!-- Edit (hx-get → swaps this item with edit form) -->
         <button
             class="btn btn-sm btn-secondary"
             hx-get="/tasks/{{ task.id }}/edit"
             hx-target="#task-{{ task.id }}"
             hx-swap="outerHTML"
         >✏️ Edit</button>
-        <!-- Delete (hx-delete → removes this item) -->
         <button
             class="btn btn-sm btn-danger"
             hx-delete="/tasks/{{ task.id }}"

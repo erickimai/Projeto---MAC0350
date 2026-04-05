@@ -6,15 +6,12 @@ from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 import models
 
-# Create tables on startup
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Task Manager")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-
-# ─── Dependency ───────────────────────────────────────────────────────────────
 
 def get_db():
     db = SessionLocal()
@@ -23,8 +20,6 @@ def get_db():
     finally:
         db.close()
 
-
-# ─── Pages ────────────────────────────────────────────────────────────────────
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request, db: Session = Depends(get_db)):
@@ -42,8 +37,6 @@ def manage(request: Request, db: Session = Depends(get_db)):
         "manage.html", {"request": request, "categories": categories}
     )
 
-
-# ─── Tasks CRUD ───────────────────────────────────────────────────────────────
 
 @app.get("/tasks", response_class=HTMLResponse)
 def search_tasks(
@@ -149,8 +142,6 @@ def delete_task(task_id: int, db: Session = Depends(get_db)):
     db.commit()
     return HTMLResponse("")
 
-
-# ─── Categories CRUD ──────────────────────────────────────────────────────────
 
 @app.post("/categories", response_class=HTMLResponse)
 def create_category(
